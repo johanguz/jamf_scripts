@@ -1,8 +1,9 @@
 #! /bin/sh
 
 # WE're only concerned with a days output that's an integer
-# if $4 from `uptime` is "mins," then the system has been up for less than an hour. 
-# We set $timeup to the output of $3, appending only "m".
+# any other result, ie. minutes or seconds results in 0
+# This allows us to create integer based smart groups ie. greater than/less than
+
 timechk=`uptime | awk '{ print $4 }'`
 
 # if result is minutes than we return 0 integer
@@ -14,7 +15,7 @@ elif [ $timechk = "days," ]; then
 
                 timeup=`uptime | awk '{ print $3 }'`
 
-# otherwise, probably seconds ago so it will generate 0.
+# otherwise, it will generate 0.
 else
 
                 timeup="0"
