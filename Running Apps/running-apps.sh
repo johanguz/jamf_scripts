@@ -9,6 +9,6 @@ runningProc=$(ps axc | grep -i "$proc" | awk '{print $1}')
     if [[ $runningProc ]]; then
         echo "$proc is running with PID: ${runningProc}"
     else
-         sudo jamf policy -action installZoom
+         sudo jamf policy -action $5
     fi
 done
